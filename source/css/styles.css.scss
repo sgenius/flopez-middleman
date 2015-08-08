@@ -1,0 +1,298 @@
+// Imports
+
+@import "compass";
+
+@import "_partials/mq";
+@import "_partials/normalize";
+@import "_partials/functions";
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Here we go...
+// Generalities
+
+// Setting up box sizing with inheritance.
+// https://css-tricks.com/box-sizing/
+html {
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+a {
+	color: $accentColor;
+	text-decoration: none;
+	border-bottom: 1px solid $accentColor;
+}
+
+body {
+	background: #eee;
+	color: #333;
+}
+
+// The layout is made out of horizontal "bars". 
+.bar {
+	width: 100%;
+}
+
+.innerbar {
+
+	margin: 0 auto;
+
+	width: 100%; 
+	max-width: nth(nth($mq-breakpoints, 3), 2); 
+
+	@include rem(padding, $generalPadding);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Header
+.pageheader {
+	text-align: center;
+	background: $accentColorDark;
+	color: #eee;
+}
+
+h1 {
+	margin: 0;
+	@include rem(font-size, 24px);
+
+}
+
+h2 {
+	margin: 0;
+	@include rem(font-size, 18px);
+	font-weight: normal;
+}
+
+.headerlogo {
+	@include rem(max-width, 50px);
+	@include rem(max-height, 50px); 
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Content 
+
+.herocontentbar {
+
+	@include mq($from: tablet) {
+		background: url(../images/bridge-photo.jpg) no-repeat;
+		background-size: 100%;
+
+		color: #fff;
+		@include text-shadow(#000 0 0 2px);
+	}
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 0;
+		@include rem(padding, 20px, 10px);
+
+		text-align: center;
+
+		background: rgba(0,0,0,0.2);
+
+		@include rem(font-size, 24px);
+		line-height: 1.2;
+
+		@include mq($from: tablet) {
+			@include rem(padding, 30px, 10px);
+			@include rem(font-size, 32px);
+		}
+
+	}
+}
+
+.contentbar {
+
+	> .innerbar > *:first-child {
+		margin-top: 0;
+	}
+
+	h3 {
+
+		text-align: center;
+		@include rem(font-size, 24px);
+
+		@include mq($from: tablet) {
+			@include rem(font-size, 32px);
+		}
+
+	}
+
+}
+
+
+// For content that will render in css columns.
+.columnar {
+	-webkit-columns: 300px 2;
+   	-moz-columns: 300px 2;
+    columns: 300px 2;
+
+    > *:first-child {
+    	margin-top: 0;
+    }
+}
+
+
+// This is for small flourish-like icons.
+.flourish {
+	display: block;
+	margin: 0 auto;
+}
+
+
+.icon-bridge {
+	@include rem(max-width, 100px);
+	color: #c00;	
+}
+
+
+
+// Contact form
+
+.formbar {
+	background: $accentColorDark;
+	color: #ccc;
+
+	input, textarea {
+		background: lighten($accentColorDark, 8);
+		border: 1px solid #ccc;
+		color: #fff;
+
+		&:hover, &:focus {
+			background: lighten($accentColorDark, 16);
+		}
+	}
+
+	input[type='submit'] {
+
+		width: 100%;
+		padding: 0.5em;
+
+		background: lighten($accentColorDark, 50);
+		color: #accentColorDark;
+
+		font-weight: bold;
+		text-align: center;
+
+		&:hover, &:focus {
+			background: lighten($accentColorDark, 58);
+		}
+
+	}
+
+}
+
+#cfname {
+	display: block;
+	width: 100%;
+	margin-bottom: 1em;
+	@include mq($from: tablet){
+		display: inline;
+		width: 50%;
+		margin-bottom: 0;
+	}
+}
+
+#cfmessage {
+	width: 100%;
+	@include mq($from: tablet){
+		margin-top: 1em;
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Footer
+
+.pagefooter {
+	@include rem(font-size, 14px);
+}
+
+.footercols {
+	@include mq($from: tablet) {
+		width: 100%;
+		@include clearfix;
+	}
+}
+
+.footercol {
+	@include rem(margin-bottom, 16px);
+	@include rem(min-height, 100px);
+
+	@include mq($from: tablet) {
+		width: 32%;
+		padding-left: 1%;
+		padding-right: 1%;
+		float: left;
+
+		&.wide {
+			width: 65%
+		}
+
+	}
+}
+
+
+.footerphoto {
+	float: left;
+	text-align: center;
+	@include rem(margin-right, 16px);
+	img {
+		max-width: 100px;
+		max-height: 100px;
+	}
+}
+
+.footerintro h3 {
+	@include mq($from: tablet) {
+		margin-top: 0;
+	}
+}
+
+.footerlinks {
+	ul {
+		list-style: inside none;
+		margin: 0; padding: 0;
+	}
+	li {
+		margin: 0.5em 0;
+	}
+
+}
+
+.footerlogo {
+	text-align: center;
+	@include rem(margin, 30px, 0);	
+	img {
+		@include rem(max-width, 50px);
+		@include rem(max-height, 50px);
+	}
+	> div {
+		@include rem(margin, 10px, 0, 0);
+
+		text-transform: uppercase;
+		@include rem(font-size, 10px);
+		letter-spacing: 0.1em;
+	}
+}
+
+.footerbar {
+	@include rem(font-size, 12px);
+	text-align: center;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
